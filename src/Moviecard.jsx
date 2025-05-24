@@ -1,13 +1,19 @@
 import React from 'react';
-import './App.css'
+import { Link } from 'react-router-dom';
+import './App.css';
 
 function MovieCard({ movie }) {
   return (
-    <div style={{ border: '1px solid #ccc', padding: 10, marginBottom: 10 }}>
-      <img src={movie.posterURL} alt={movie.title} style={{ width: '150px' }} />
-      <h3>{movie.title}</h3>
-      <p>{movie.description}</p>
-      <p>Rating: {movie.rating} / 5</p>
+    <div className="movie-card">
+      <img src={movie.posterURL} alt={movie.title} className="movie-img" />
+      <div className="movie-info">
+        <h3>{movie.title}</h3>
+        <p>{movie.description.slice(0, 80)}...</p>
+        <p>⭐ {movie.rating} / 5</p>
+        <Link to={`/movies/${movie.title}`} className="details-link">
+          View Details ▶
+        </Link>
+      </div>
     </div>
   );
 }
